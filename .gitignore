@@ -1,0 +1,24 @@
+# Environment variables and secrets
+.env
+*.env
+!.env.example
+
+# Python virtual environment & cache
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+
+# Logs
+logs/
+*.log
+
+# Docker / OS metadata
+.DS_Store
+Thumbs.db
