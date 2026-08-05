@@ -110,8 +110,8 @@ open_meteo_etl/
 ### 1. Environment Configuration
 Clone the repository and copy the `.env.example` file:
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/open_meteo_etl.git
-cd open_meteo_etl
+git clone https://github.com/callbyIshant/Weather-ETL-Pipeline.git
+cd Weather-ETL-Pipeline
 cp .env.example .env
 ```
 
