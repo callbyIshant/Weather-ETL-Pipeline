@@ -146,67 +146,6 @@ python run_pipeline.py --schedule 60
 python run_pipeline.py --verify
 ```
 
----
-
-## Sample Pipeline Output
-
-```text
-============================================================
-STARTING OPEN-METEO MEDALLION ETL PIPELINE RUN
-============================================================
-[INFO] Database connection test SUCCESSFUL.
-[INFO] Pipeline Batch ID: d658e8d0-3d9d-42a1-bba8-3b427369072e
-[INFO] Extracting weather data from Open-Meteo for London...
-[INFO] Loaded Bronze record ID 1 for London.
-[INFO] Transformed 192 hourly rows and 8 daily rows for Silver layer (London).
-[INFO] Loaded 192 hourly rows and 8 daily rows into Silver schema.
-...
-[INFO] Transformed 48 daily summary records and detected 6 anomalies for Gold layer.
-[INFO] Loaded 48 summaries and 6 anomalies into Gold schema.
-
-+--------------------------------+---------------------+
-| Medallion Pipeline Layer       |   Records Processed |
-+================================+=====================+
-| Bronze Layer (Raw Payloads)    |                   6 |
-| Silver Layer (Hourly Records)  |                1152 |
-| Silver Layer (Daily Records)   |                  48 |
-| Gold Layer (Daily Summaries)   |                  48 |
-| Gold Layer (Anomalies Flagged) |                   6 |
-+--------------------------------+---------------------+
-
-==================================================
-DATABASE LAYER ROW COUNTS VERIFICATION
-==================================================
-+-----------------------------+-------------+
-| Table Name                  |   Row Count |
-+=============================+=============+
-| bronze.raw_weather_payloads |          12 |
-| silver.weather_hourly       |        1152 |
-| silver.weather_daily        |          48 |
-| gold.daily_city_summary     |          48 |
-| gold.weather_anomalies      |           6 |
-+-----------------------------+-------------+
-```
-
----
-
-## Setting Up Metabase Dashboard
-
-1. Navigate to **`http://localhost:3000`** in your browser.
-2. Complete the initial setup and add a new database connection:
-   * **Database Type**: `PostgreSQL`
-   * **Host**: `weather_postgres` (or `host.docker.internal`)
-   * **Port**: `5432` (or `5433` if using `host.docker.internal`)
-   * **Database**: `weather_db`
-   * **Username**: `weather_user`
-   * **Password**: `weather_password_secure_123`
-3. Create visualizations using the `gold` schema:
-   * **Line Chart**: `avg_temp_c` vs `rolling_7d_avg_temp` by `summary_date` and `city`.
-   * **Bar Chart**: `total_precipitation_mm` grouped by `city`.
-   * **Alert Log Table**: `gold.weather_anomalies` filtered by `severity`.
-
----
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
